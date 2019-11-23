@@ -1,0 +1,16 @@
+{
+  "name": "minify-your-img",
+  "version": "1.0.0",
+  "description": "minify your images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "zhiozhou",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "tinify": "^1.6.0-beta.2"
+  }
+}
