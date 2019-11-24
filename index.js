@@ -2,10 +2,10 @@ const tinify = require('tinify')
 const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
-const API_KEY = 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN'
-const target = path.resolve('target')
-tinify.key = API_KEY
 
+const API_KEY = "fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN";
+const target = path.resolve("target");
+tinify.key = API_KEY
 
 // 'dir' || 'file'
 let style = process.argv[2]
@@ -38,6 +38,34 @@ function ValidityApi() {
     }
   });
 }
+// TODO 进度条
+var progress = {
+  str: '',
+  len: 0,
+  maxLen: 5,
+  opt: add
+}
+var bool = false
+function progressSet() {
+  var tiemr = setInterval(() => {
+    if (bool) {
+      clearInterval(tiemr);
+      return
+    }
+
+    if (progress.len < progress.maxLen && progress.len > 0) {
+      progress.len++;
+      progress.str += " =";
+    } else if (progress.len >= progress.maxLen) {
+      progress.len--
+      progress.str = progress.str.substring(0, progress.str.length - 1)
+    } else {
+      progress.len++;
+      progress.str += ' ='
+    }
+    console.log(progress.str);
+  }, 1000)
+}
 
 function compresePic() {
   // single picture
@@ -58,14 +86,20 @@ function compresePic() {
           fs.rmdir(target, err => {
             if (err) throw err;
             fs.mkdir(target, err => {
-              console.log(chalk.bgBlue.black("INFO"), 'Start compressing...');
+              console.log(chalk.bgBlue.black("INFO"), 'Start compressing...')
+              // console.log(progressArr)
+              progressSet()
               tinify
                 .fromFile(path.resolve(`./source/${detail}`))
                 .toFile(
                   `${target}/${detail.split(".")[0]}.min.${detail.split(".")[1]}`,
                   () => {
-                    console.log(chalk.bgGreen.black("DONE"), chalk.green('Successful compression!'));
-                  }
+                          bool = true;
+                          console.log(
+                            chalk.bgGreen.black("DONE"),
+                            chalk.green("Successful compression!")
+                          );
+                        }
                 );
             });
           });
