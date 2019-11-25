@@ -2,6 +2,7 @@ const tinify = require('tinify')
 const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
+const progress = require('./utils/progress')
 
 const API_KEY = "fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN";
 const target = path.resolve("target");
@@ -12,7 +13,9 @@ let style = process.argv[2]
 // catalog || file
 let detail = process.argv[3]
 
+const MAXLEN = 10
 function fileMin(style, detail) {
+  initProgress(MAXLEN)
   ValidityApi()
   switch (style) {
     case 'file':
@@ -38,32 +41,15 @@ function ValidityApi() {
     }
   });
 }
-// TODO 进度条
-var progress = {
-  str: '',
-  len: 0,
-  maxLen: 5,
-  opt: add
-}
-var bool = false
-function progressSet() {
-  var tiemr = setInterval(() => {
-    if (bool) {
-      clearInterval(tiemr);
+
+function initProgress(m) {
+  progress.maxLen = m
+  let timer = setInterval(function () {
+    if (progress.isDone) {
+      clearInterval(timer)
       return
     }
-
-    if (progress.len < progress.maxLen && progress.len > 0) {
-      progress.len++;
-      progress.str += " =";
-    } else if (progress.len >= progress.maxLen) {
-      progress.len--
-      progress.str = progress.str.substring(0, progress.str.length - 1)
-    } else {
-      progress.len++;
-      progress.str += ' ='
-    }
-    console.log(progress.str);
+    progress.init()
   }, 1000)
 }
 
@@ -87,14 +73,12 @@ function compresePic() {
             if (err) throw err;
             fs.mkdir(target, err => {
               console.log(chalk.bgBlue.black("INFO"), 'Start compressing...')
-              // console.log(progressArr)
-              progressSet()
               tinify
                 .fromFile(path.resolve(`./source/${detail}`))
                 .toFile(
                   `${target}/${detail.split(".")[0]}.min.${detail.split(".")[1]}`,
                   () => {
-                          bool = true;
+                          progress.isDone = true;
                           console.log(
                             chalk.bgGreen.black("DONE"),
                             chalk.green("Successful compression!")

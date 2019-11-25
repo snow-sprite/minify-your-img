@@ -4,6 +4,7 @@
   "description": "minify your images",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js file cloud.jpg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
