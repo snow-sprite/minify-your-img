@@ -3,18 +3,18 @@
 
 #### 使用
 ```
-/**
- * @params {type} 文件类型
- * @params {source} 文件名或文件夹名或链接地址(需将源文件放至source目录下)
- * source类型一 dir: 文件夹
- * source类型二 file: 单文件
- * source类型三 url: 图片链接
- * @return {target} 压缩的图片输出至target目录下
- */
-node index type source
+npm start
 ```
 
 #### 目前进度
-- [x] 压缩单图
-- [ ] 压缩文件夹下所有图片
+- [x] 压缩单文件夹下所有图片
 - [ ] 压缩在线图片
+
+`优点：`
+*1. 压缩质量出类拔萃*
+*2. 图像保真，压缩后与原图的差别肉眼难辨*
+
+`缺点：`
+*1.外国服务器，不fq的情况下很慢*
+
+Whatever, Practice is the only criterion for testing truth. so, JUST DO IT.
