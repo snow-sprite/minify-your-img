@@ -34,7 +34,7 @@ function rebuildTarget() {
         progress.isDone = true;
         console.log(
           chalk.bgGreen.black("DONE"),
-          "files were successfully compressed!"
+          `The file is saved in the ${chalk.bold.underline('targetOnline')} folder`
         );
       });
     } else {

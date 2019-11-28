@@ -86,7 +86,7 @@ function fileReader(fod) {
                 progress.isDone = true;
                 console.log(
                   chalk.bgGreen.black("DONE"),
-                  chalk.green(`${finishedFiles}`),
+                  chalk.bold.underline(`${finishedFiles}`),
                   'files were successfully compressed!'
                 );
               }
