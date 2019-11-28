@@ -34,6 +34,7 @@ function validityApi() {
     tinify.validate(function (err) {
       if (err) {
         reject(err)
+        return
       }
       resolve()
     });
@@ -42,6 +43,19 @@ function validityApi() {
 
 function initProgress(m) {
   // init progressing..
+  console.log('===================================\n')
+  console.log('Thank you for using minify-your-img.\n')
+  console
+    .log(chalk.green(
+         `             _    _
+            ${chalk.white('(o)--(o)')}
+           /${chalk.white('.______.')}\\
+           \\________/
+          ./        \\.
+          ( .      , )
+          \ \_\\\\ //_/ /
+           ~~  ~~  ~~`))
+  console.log('===================================\n')
   console.log(chalk.bgBlue.black("INFO"), 'Start compressing...')
   progress.maxLen = m
   let timer = setInterval(function () {
@@ -63,20 +77,20 @@ function fileReader(fod) {
         if (err) throw err
         if (st.isFile()) {
           tinify
-          .fromFile(
-            path.join(__dirname, `/source/${stat}`)
-          )
-          .toFile(`${target}/${stat.split(".")[0]}.min.${stat.split(".")[1]}`, () => {
-            finishedFiles+=1
-            if (finishedFiles == unFinishedFiles) {
-              progress.isDone = true;
-              console.log(
-                chalk.bgGreen.black("DONE"),
-                chalk.green(`${finishedFiles}`),
-                'files were successfully compressed!'
-              );
-            }
-          })
+            .fromFile(
+              path.join(__dirname, `/source/${stat}`)
+            )
+            .toFile(`${target}/${stat.split(".")[0]}.min.${stat.split(".")[1]}`, () => {
+              finishedFiles += 1
+              if (finishedFiles == unFinishedFiles) {
+                progress.isDone = true;
+                console.log(
+                  chalk.bgGreen.black("DONE"),
+                  chalk.green(`${finishedFiles}`),
+                  'files were successfully compressed!'
+                );
+              }
+            })
         } else if (st.isDirectory()) {
           // console.log(chalk.bgYellow('WARN'), 'Directory is not supported yet..\n')
           unFinishedFiles -= 1
@@ -86,7 +100,7 @@ function fileReader(fod) {
   })
 }
 
-function delTarget() {
+function rebuildTarget() {
   fs.readdir(target, "", (err, files) => {
     if (err) throw err;
     if (files.length > 0) {
@@ -113,10 +127,10 @@ function compresePic() {
       // if there's not a target dir, make it first.
       if (err) {
         fs.mkdir(target, () => {
-          delTarget()
+          rebuildTarget()
         })
       } else {
-        delTarget()
+        rebuildTarget()
       }
     });
   } catch (error) {
