@@ -4,7 +4,7 @@
 #### 使用
 ```javascript
 npm run build // 压缩source文件夹下所有图片，输出到target文件夹（暂不支持多文件夹目录）
----
+##
 npm run build_online // 压缩在线图片,输出到targetOnline文件夹
 ```
 
