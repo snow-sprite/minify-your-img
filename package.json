@@ -9,6 +9,10 @@
     "build_online": "node index.online.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "tinify": "^1.6.0-beta.2"
+  },
   "keywords": [
     "minify",
     "compress",
@@ -20,9 +24,5 @@
   "git repository": "https://github.com/snow-sprite/minify-your-img",
   "bugs": {
     "email": "959418392@qq.com"
-  },
-  "dependencies": {
-    "chalk": "^3.0.0",
-    "tinify": "^1.6.0-beta.2"
   }
 }
