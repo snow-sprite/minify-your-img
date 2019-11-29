@@ -1,8 +1,11 @@
 {
   "name": "minify-your-img",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "minify your images",
-  "author": "zhiozhou",
+  "author": {
+    "name": "zhiozhou",
+    "email": "959418392@qq.com"
+  },
   "main": "index.js",
   "scripts": {
     "build": "node .",
@@ -21,7 +24,11 @@
     "compress-images"
   ],
   "license": "MIT",
-  "git repository": "https://github.com/snow-sprite/minify-your-img",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snow-sprite/minify-your-img",
+    "directory": "packages/minify-your-img"
+  },
   "bugs": {
     "email": "959418392@qq.com"
   }
