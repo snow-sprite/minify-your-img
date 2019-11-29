@@ -1,16 +1,26 @@
 {
   "name": "minify-your-img",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "minify your images",
+  "author": "zhiozhou",
   "main": "index.js",
   "scripts": {
     "build": "node .",
     "build_online": "node index.online.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "zhiozhou",
-  "license": "ISC",
+  "keywords": [
+    "minify",
+    "compress",
+    "minify-img",
+    "minify-your-img",
+    "compress-images"
+  ],
+  "license": "MIT",
+  "git repository": "https://github.com/snow-sprite/minify-your-img",
+  "bugs": {
+    "email": "959418392@qq.com"
+  },
   "dependencies": {
     "chalk": "^3.0.0",
     "tinify": "^1.6.0-beta.2"
